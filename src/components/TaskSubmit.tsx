@@ -1,13 +1,16 @@
-import React, { useRef, useState } from 'react'
-//import { Task } from 'models/Task';
-//import { v4 as uuidv4 } from 'uuid';
-import './TaskSubmit.css'
+import useTasks from 'hooks/useTasks';
+import { Task } from 'models/Task';
+import React, { useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './TaskSubmit.css';
 
 type formElement = React.FormEvent<HTMLFormElement>;
 
 export default function TaskSubmit(): JSX.Element {
 
     const [taskName, setTaskName] = useState<string>('')
+    const { tasks, setTasks } = useTasks()
+
     const taskInput = useRef<HTMLInputElement>(null)
 
 
@@ -18,8 +21,15 @@ export default function TaskSubmit(): JSX.Element {
     const handleSubmit = (e: formElement): void => {
         e.preventDefault()
 
+        addTask(taskName)
+
         setTaskName('')
         taskInput.current?.focus()
+    }
+
+    const addTask = (name: string): void => {
+        const newTasks: Task[] = [...tasks].concat({ id: uuidv4(), name: name, done: false })
+        setTasks(newTasks)
     }
 
     return (

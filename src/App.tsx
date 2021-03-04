@@ -1,9 +1,12 @@
+import { TasksContext } from 'context/TasksContext';
+import Home from 'pages/Home';
 import React from 'react';
-import Home from 'pages/Home'
 
 export default function App(): JSX.Element {
 
   return (
-    <Home />
+    <TasksContext>
+      <Home />
+    </TasksContext>
   );
 }
