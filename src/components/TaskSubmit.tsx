@@ -1,7 +1,7 @@
+
 import useTasks from 'hooks/useTasks';
-import { Task } from 'models/Task';
 import React, { useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { addTask } from 'reducers/task/taskAction';
 import './TaskSubmit.css';
 
 type formElement = React.FormEvent<HTMLFormElement>;
@@ -9,10 +9,8 @@ type formElement = React.FormEvent<HTMLFormElement>;
 export default function TaskSubmit(): JSX.Element {
 
     const [taskName, setTaskName] = useState<string>('')
-    const { tasks, setTasks } = useTasks()
-
+    const { dispatch } = useTasks()
     const taskInput = useRef<HTMLInputElement>(null)
-
 
     const onChangeTaskInput = (value: string): void => {
         setTaskName(value)
@@ -21,15 +19,11 @@ export default function TaskSubmit(): JSX.Element {
     const handleSubmit = (e: formElement): void => {
         e.preventDefault()
 
-        addTask(taskName)
+        if (!taskName) return
+        dispatch(addTask(taskName))
 
         setTaskName('')
         taskInput.current?.focus()
-    }
-
-    const addTask = (name: string): void => {
-        const newTasks: Task[] = [...tasks].concat({ id: uuidv4(), name: name, done: false })
-        setTasks(newTasks)
     }
 
     return (

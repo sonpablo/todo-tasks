@@ -12,6 +12,7 @@ After a while I've decided to try/learnd TypeScript, so I've created a single TO
 - Custom hooks
 - context api
 - reducer api
+- uuid api
 - 🧠
 
 ### How to run

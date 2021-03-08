@@ -1,15 +1,22 @@
-import React from 'react'
-import { Task as ITask } from 'models/Task';
+import useTasks from 'hooks/useTasks';
+import { Task as TaskType } from 'models/Task';
+import React from 'react';
+import { doneTask, removeTask } from 'reducers/task/taskAction';
 
-export default function Task(task: ITask): JSX.Element {
+interface Props {
+    task: TaskType
+}
 
-    const toggleDoneTask = (id: string): void => {
+const Task: React.FC<Props> = ({ task }): JSX.Element => {
 
+    const { dispatch } = useTasks()
+
+    const onRemoveTask = (id: string): void => {
+        dispatch(removeTask(id))
     }
 
-
-    const removeTask = (id: string): void => {
-
+    const toggleDoneTask = (id: string): void => {
+        dispatch(doneTask(id))
     }
 
     return (
@@ -17,7 +24,9 @@ export default function Task(task: ITask): JSX.Element {
             <h2 style={{ textDecoration: task.done ? 'line-through' : '' }}>{task.name}</h2>
             <h3>{task.id}</h3>
             <button onClick={() => toggleDoneTask(task.id)}>{task.done ? '✗' : '✔'}</button>
-            <button onClick={() => removeTask(task.id)}>🗑</button>
+            <button onClick={() => onRemoveTask(task.id)}>🗑</button>
         </div>
     )
 }
+
+export default Task;
