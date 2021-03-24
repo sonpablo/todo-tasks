@@ -19,11 +19,13 @@ export default function TaskSubmit(): JSX.Element {
     const handleSubmit = (e: formElement): void => {
         e.preventDefault()
 
+        taskInput.current?.focus()
+
         if (!taskName) return
         dispatch(addTask(taskName))
 
         setTaskName('')
-        taskInput.current?.focus()
+
     }
 
     return (

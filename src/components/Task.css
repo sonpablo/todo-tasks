@@ -1,0 +1,19 @@
+.task-container {
+  border: 1px solid rgba(182, 179, 179, 0.75);
+  padding-right: 1em;
+  padding-left: 1em;
+  margin: 1em auto;
+}
+.button-action {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+.button-action:hover,
+:focus {
+  font-weight: bold;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+}

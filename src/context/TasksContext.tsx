@@ -17,7 +17,7 @@ interface Props {
     children: React.ReactNode
 }
 
-export const TasksProvider: React.FC<Props> = ({ children }): JSX.Element => {
+export const TasksProvider: React.FC<Props> = ({ children }: Props): JSX.Element => {
     const [state, dispatch] = useReducer(reducer, [])
     return (
         <context.Provider value={{ state, dispatch }}>

@@ -21,7 +21,6 @@ export const reducer = (state: Task[], action: Action) => {
 
         return taskSpreaded;
       });
-
       return newState;
 
     case ActionTypes.REMOVE:

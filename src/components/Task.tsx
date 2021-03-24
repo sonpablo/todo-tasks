@@ -2,7 +2,7 @@ import useTasks from 'hooks/useTasks';
 import { Task as TaskType } from 'models/Task';
 import React from 'react';
 import { doneTask, removeTask } from 'reducers/task/taskAction';
-
+import './Task.css';
 interface Props {
     task: TaskType
 }
@@ -20,11 +20,11 @@ const Task: React.FC<Props> = ({ task }): JSX.Element => {
     }
 
     return (
-        <div >
+        <div className='task-container' >
             <h2 style={{ textDecoration: task.done ? 'line-through' : '' }}>{task.name}</h2>
-            <h3>{task.id}</h3>
-            <button onClick={() => toggleDoneTask(task.id)}>{task.done ? '✗' : '✔'}</button>
-            <button onClick={() => onRemoveTask(task.id)}>🗑</button>
+            <h3>{`code: ${task.id}`}</h3>
+            <button className='button-action' onClick={() => toggleDoneTask(task.id)}>{task.done ? '✗' : '✔'}</button>
+            <button className='button-action' onClick={() => onRemoveTask(task.id)}>🗑</button>
         </div>
     )
 }
