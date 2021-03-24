@@ -17,3 +17,6 @@
   font-weight: bold;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
 }
+.button-action:active {
+  transform: scale(0.9);
+}
